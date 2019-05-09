@@ -31,14 +31,17 @@ class ListarComponentes extends Component {
     this.handleChangeEstado = this.handleChangeEstado.bind(this);
     this.crearJSON = this.crearJSON.bind(this);
     this.verificar = this.verificar.bind(this);
+    this.expandirTabla = this.expandirTabla.bind(this);
     this.state = {
       data: null,
       JSON: [],
       ubicDato: [],
       tipoDato: [],
       isLoading: false,
-      isNew: false
+      isNew: false,
+      expand: false
     };
+
   }
 
   componentWillMount() {
@@ -418,6 +421,17 @@ class ListarComponentes extends Component {
     );
   }
 
+  expandirTabla(e) {
+    if (!this.state.expand) {
+      this.setState({ expand: true });
+      e.target.innerHTML = "VER MENOS";
+    } else {
+      this.setState({ expand: false });
+      e.target.innerHTML = "VER MÁS";
+    }
+    console.log(this.state.expand);
+  }
+
   render() {
     const listado = this.state.data;
     //console.log(this.props);
@@ -443,7 +457,9 @@ class ListarComponentes extends Component {
                 Registrar
               </button>
             </div>
-            <p> </p>
+            <div>
+              <button className="btn btn-success" onClick={e => this.expandirTabla(e)}>VER MÁS</button>
+            </div>
           </div>
           <table
             className="tabla table-striped table-bordered table-hover"
@@ -456,15 +472,15 @@ class ListarComponentes extends Component {
                 <th>Concepto</th>
                 <th>Descripcion</th>
                 <th>Codigo</th>
-                <th>Sigla Programa</th>
+                <th>Programa</th>
                 <th>Recibo</th>
                 <th>Moneda</th>
                 <th>Importe</th>
                 <th>Fecha</th>
-                <th>Ubicación</th>
-                <th>Tipo</th>
-                <th>Verificar</th>
-                <th>Observaciones</th>
+                <th className={this.state.expand ? "" : "d-none"}>Ubicación</th>
+                <th className={this.state.expand ? "" : "d-none"}>Tipo</th>
+                <th className={this.state.expand ? "" : "d-none"}>Verificar</th>
+                <th className={this.state.expand ? "" : "d-none"}>Observaciones</th>
               </tr>
             </thead>
             <tbody id="table">
@@ -497,7 +513,7 @@ class ListarComponentes extends Component {
                     {dynamicData.mascara} {dynamicData.importe}
                   </td>
                   <td>{dynamicData.fecha}</td>
-                  <td>
+                  <td className={this.state.expand ? "" : "d-none"}>
                     <Combo
                       items={this.state.ubicDato}
                       val={this.handleChangeUbic}
@@ -506,7 +522,7 @@ class ListarComponentes extends Component {
                     />
                   </td>
 
-                  <td>
+                  <td className={this.state.expand ? "" : "d-none"}>
                     <Combodos
                       items={this.state.tipoDato}
                       val={this.handleChangeType}
@@ -514,7 +530,7 @@ class ListarComponentes extends Component {
                       id_rec={dynamicData.id_rec}
                     />
                   </td>
-                  <td>
+                  <td className={this.state.expand ? "" : "d-none"}>
                     <Check
                       validado={dynamicData.validado}
                       id={dynamicData.id_rec}
@@ -522,7 +538,7 @@ class ListarComponentes extends Component {
                       disabled={true}
                     />
                   </td>
-                  <td className="two-fields">
+                  <td className={this.state.expand ? "two-fields" : "d-none"}>
                     <button
                       id={dynamicData.observacion}
                       name={dynamicData.id_rec}

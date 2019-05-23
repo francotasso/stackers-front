@@ -477,14 +477,13 @@ class ListarComponentes extends Component {
                 <th>Descripcion</th>
                 <th>Codigo</th>
                 <th>Programa</th>
-                <th>Cuenta</th>
-                <th>Tipo de Carga</th>
                 <th>Recibo</th>
                 <th>Moneda</th>
                 <th>Importe</th>
                 <th>Fecha</th>
                 <th className={this.state.expand ? "" : "d-none"}>Ubicación</th>
-                <th className={this.state.expand ? "" : "d-none"}>Tipo</th>
+                <th className={this.state.expand ? "" : "d-none"}>Cuenta del Banco</th>
+                <th className={this.state.expand ? "" : "d-none"}>Tipo de Carga</th>
                 <th className={this.state.expand ? "" : "d-none"}>Verificar</th>
                 <th className={this.state.expand ? "" : "d-none"}>Observaciones</th>
               </tr>
@@ -513,8 +512,6 @@ class ListarComponentes extends Component {
                   <td>{dynamicData.descripcion}</td>
                   <td>{dynamicData.codigo}</td>
                   <td>{dynamicData.sigla_programa}</td>
-                  <td>{dynamicData.tipo}</td>
-                  <td>{dynamicData.id_registro == 2103 ? "DIGITADO" : "REMITIDO"}</td>
                   <td>{dynamicData.recibo}</td>
                   <td>{dynamicData.moneda}</td>
                   <td>
@@ -530,14 +527,8 @@ class ListarComponentes extends Component {
                     />
                   </td>
 
-                  <td className={this.state.expand ? "" : "d-none"}>
-                    <Combodos
-                      items={this.state.tipoDato}
-                      val={this.handleChangeType}
-                      tipo={dynamicData.tipo}
-                      id_rec={dynamicData.id_rec}
-                    />
-                  </td>
+                  <td className={this.state.expand ? "" : "d-none"}>{dynamicData.tipo}</td>
+                  <td className={this.state.expand ? "" : "d-none"}>{dynamicData.id_registro == 2103 ? "DIGITADO" : "REMITIDO"}</td>
                   <td className={this.state.expand ? "" : "d-none"}>
                     <Check
                       validado={dynamicData.validado}

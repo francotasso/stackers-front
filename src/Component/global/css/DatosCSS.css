@@ -6,9 +6,15 @@
   width:20px;
   height:17px;
 }
-td{
-  height: auto;
+
+th{
+  height: 85px;
 }
+
+td{
+  height: 95px;
+}
+
 .tabla{
   width: 95%;
   height:auto;

@@ -462,7 +462,7 @@ class ListarComponentes extends Component {
               </button>
             </div>
             <div>
-              <button className="btn btn-success" onClick={e => this.expandirTabla(e)}>VER MÁS</button>
+              <button className="btn btn-outline-primary" onClick={e => this.expandirTabla(e)}>VER MÁS</button>
             </div>
           </div>
           <table

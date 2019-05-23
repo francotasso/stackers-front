@@ -55,13 +55,14 @@ class ListarComponentes extends Component {
             item.observacion,
             item.observacion_upg,
             item.id_ubicacion && item.id_ubicacion,
-            item.id_tipo,
+            item.tipo,
             item.validado,
             item.nombre,
             item.concepto,
             item.descripcion,
             item.sigla_programa,
             item.id_programa,
+            item.id_registro,
             item.codigo,
             item.recibo,
             item.moneda,
@@ -81,7 +82,7 @@ class ListarComponentes extends Component {
             }*/
       );
     }
-    //console.log(arreglo);
+    console.log(arreglo);
     //const url= 'https://api-modulocontrol.herokuapp.com/ubicaciones';
     const url = URL.url.concat("ubicaciones");
     fetch(url, {
@@ -217,6 +218,7 @@ class ListarComponentes extends Component {
     descripcion,
     sigla_programa,
     id_programa,
+    id_registro,
     codigo,
     recibo,
     moneda,
@@ -236,6 +238,7 @@ class ListarComponentes extends Component {
     this.descripcion = descripcion;
     this.sigla_programa = sigla_programa;
     this.id_programa = id_programa;
+    this.id_registro = id_registro;
     this.codigo = codigo;
     this.recibo = recibo;
     this.moneda = moneda;
@@ -339,7 +342,8 @@ class ListarComponentes extends Component {
   openModalUpg(e) {
     let id = e;
     const url =
-      "https://modulocontrol.herokuapp.com/recaudaciones/observaciones/" + id;
+      //"https://modulocontrol.herokuapp.com/recaudaciones/observaciones/" + id;
+      URL.url.concat("recaudaciones/observaciones/" + id);
     //console.log(url);
     fetch(url, {
       method: "GET",
@@ -358,7 +362,7 @@ class ListarComponentes extends Component {
             <MyModalUpg
               id_rec={id}
               obs_upg={res.data}
-              onChange={this.handleChangeObs_upg}
+              change={this.handleChangeObs_upg}
               estado={true}
             />
           );
@@ -473,6 +477,8 @@ class ListarComponentes extends Component {
                 <th>Descripcion</th>
                 <th>Codigo</th>
                 <th>Programa</th>
+                <th>Cuenta</th>
+                <th>Tipo de Carga</th>
                 <th>Recibo</th>
                 <th>Moneda</th>
                 <th>Importe</th>
@@ -507,6 +513,8 @@ class ListarComponentes extends Component {
                   <td>{dynamicData.descripcion}</td>
                   <td>{dynamicData.codigo}</td>
                   <td>{dynamicData.sigla_programa}</td>
+                  <td>{dynamicData.tipo}</td>
+                  <td>{dynamicData.id_registro == 2103 ? "DIGITADO" : "REMITIDO"}</td>
                   <td>{dynamicData.recibo}</td>
                   <td>{dynamicData.moneda}</td>
                   <td>
@@ -539,7 +547,7 @@ class ListarComponentes extends Component {
                     />
                   </td>
                   <td className={this.state.expand ? "two-fields" : "d-none"}>
-                    <button
+                    < button
                       id={dynamicData.observacion}
                       name={dynamicData.id_rec}
                       onClick={e =>

@@ -374,10 +374,10 @@ class ListarComponentes extends Component {
                             <th>Importe</th>
                             <th>Fecha</th>
                             <th className={this.state.expand ? "" : "d-none"}>Ubicación</th>
-                            <th className={this.state.expand ? "" : "d-none"}>Cuenta del Banco</th>
-                            <th className={this.state.expand ? "" : "d-none"}>Tipo de Carga</th>
                             <th className={this.state.expand ? "" : "d-none"}>Verificar</th>
                             <th className={this.state.expand ? "" : "d-none"}>Observaciones</th>
+                            <th className={this.state.expand ? "" : "d-none"}>Cuenta del Banco</th>
+                            <th className={this.state.expand ? "" : "d-none"}>Tipo de Carga</th>
                         </tr>
                     </thead>
                     <tbody>{listado.map((dynamicData, i) =>
@@ -400,9 +400,6 @@ class ListarComponentes extends Component {
                                     id_rec={dynamicData.id_rec}
                                 />
                             </td>
-
-                            <td className={this.state.expand ? "" : "d-none"}>{dynamicData.tipo}</td>
-                            <td className={this.state.expand ? "" : "d-none"}>{dynamicData.id_registro}</td>
                             <td className={this.state.expand ? "" : "d-none"}>
                                 <Check
                                     validado={dynamicData.validado}
@@ -421,6 +418,8 @@ class ListarComponentes extends Component {
                                     <span className="mybtn-blue glyphicon glyphicon-eye-open"></span>
                                 </button>
                             </td>
+                            <td className={this.state.expand ? "" : "d-none"}>{dynamicData.tipo}</td>
+                            <td className={this.state.expand ? "" : "d-none"}>{dynamicData.id_registro == 2103 ? "DIGITADO" : "REMITIDO"}</td>
                         </tr>
                     )}
                     </tbody>

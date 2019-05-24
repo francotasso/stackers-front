@@ -477,7 +477,7 @@ class ListarComponentes extends Component {
                 <th>Nro</th>
                 <th>Nombre Apellido</th>
                 <th>Concepto</th>
-                <th>Descripcion</th>
+                <th className="text-left">Descripcion</th>
                 <th>Codigo</th>
                 <th>Programa</th>
                 <th>Recibo</th>
@@ -512,7 +512,7 @@ class ListarComponentes extends Component {
                     {dynamicData.nombre}
                   </td>
                   <td>{dynamicData.concepto}</td>
-                  <td>{dynamicData.descripcion}</td>
+                  <td className="text-left">{dynamicData.descripcion}</td>
                   <td>{dynamicData.codigo}</td>
                   <td>{dynamicData.sigla_programa}</td>
                   <td>{dynamicData.recibo}</td>

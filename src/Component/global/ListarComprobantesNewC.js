@@ -414,15 +414,18 @@ class ListarComponentes extends Component {
     let cod = c;
     let sig = d;
     let idp = b;
-    ModalManager.open(
-      <Modal2
-        id={id_alum}
-        nombre={nom}
-        codigo={cod}
-        sigla={sig}
-        idPrograma={idp}
-      />
-    );
+    if(cod!=null){
+      ModalManager.open(
+        <Modal2
+          id={id_alum}
+          nombre={nom}
+          codigo={cod}
+          sigla={sig}
+          idPrograma={idp}
+        />
+      );
+    }
+    
   }
 
   expandirTabla(e) {

@@ -482,10 +482,10 @@ class ListarComponentes extends Component {
                 <th>Importe</th>
                 <th>Fecha</th>
                 <th className={this.state.expand ? "" : "d-none"}>Ubicación</th>
-                <th className={this.state.expand ? "" : "d-none"}>Cuenta del Banco</th>
-                <th className={this.state.expand ? "" : "d-none"}>Tipo de Carga</th>
                 <th className={this.state.expand ? "" : "d-none"}>Verificar</th>
                 <th className={this.state.expand ? "" : "d-none"}>Observaciones</th>
+                <th className={this.state.expand ? "" : "d-none"}>Cuenta del Banco</th>
+                <th className={this.state.expand ? "" : "d-none"}>Tipo de Carga</th>
               </tr>
             </thead>
             <tbody id="table">
@@ -527,9 +527,7 @@ class ListarComponentes extends Component {
                     />
                   </td>
 
-                  <td className={this.state.expand ? "" : "d-none"}>{dynamicData.tipo}</td>
-                  <td className={this.state.expand ? "" : "d-none"}>{dynamicData.id_registro == 2103 ? "DIGITADO" : "REMITIDO"}</td>
-                  <td className={this.state.expand ? "" : "d-none"}>
+                <td className={this.state.expand ? "" : "d-none"}>
                     <Check
                       validado={dynamicData.validado}
                       id={dynamicData.id_rec}
@@ -562,6 +560,9 @@ class ListarComponentes extends Component {
                       <span className="mybtn-blue glyphicon glyphicon-eye-open" />
                     </button>
                   </td>
+                  <td className={this.state.expand ? "" : "d-none"}>{dynamicData.tipo}</td>
+                  <td className={this.state.expand ? "" : "d-none"}>{dynamicData.id_registro == 2103 ? "DIGITADO" : "REMITIDO"}</td>
+                  
                 </tr>
               ))}
             </tbody>

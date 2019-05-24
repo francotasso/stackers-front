@@ -43,9 +43,10 @@ class ListarComponentes extends Component {
             lista.map((item, key) => {
                 arreglo = arreglo.concat(new this.Obj(item.id_rec, item.observacion, item.observacion_upg, item.id_ubicacion
                     && item.id_ubicacion, item.validado, item.nombre,
-                    item.concepto, item.descripcion,item.sigla_programa ,item.codigo, item.recibo, item.moneda, item.mascara,
-                     item.importe, item.fecha, item.dni, item.nombre_programa
-                    ));
+                    item.concepto, item.descripcion, item.sigla_programa, item.id_programa,
+                    item.id_registro, item.codigo, item.recibo, item.moneda, item.mascara,
+                    item.importe, item.fecha, item.dni, item.nombre_programa
+                ));
                 return null;
             });
             const listadoOrdenado = arreglo.sort(function (a, b) {
@@ -127,7 +128,7 @@ class ListarComponentes extends Component {
     }
 
     //crea un objeto para pasar al hijo
-    Obj(id_rec, obs, obs_upg, ubic, validado, nombre, concepto,descripcion,sigla_programa , codigo, recibo,
+    Obj(id_rec, obs, obs_upg, ubic, validado, nombre, concepto, descripcion, sigla_programa, codigo, id_registro, tipo, recibo,
         moneda, mascara, importe, fecha, dni, nombre_programa) {
         this.id_rec = id_rec;
         this.obs = obs;
@@ -139,6 +140,8 @@ class ListarComponentes extends Component {
         this.descripcion = descripcion;
         this.sigla_programa = sigla_programa;
         this.codigo = codigo;
+        this.id_registro = id_registro;
+        this.tipo = tipo;
         this.recibo = recibo;
         this.moneda = moneda;
         this.mascara = mascara;
@@ -247,7 +250,7 @@ class ListarComponentes extends Component {
                     let node = document.createElement('div');
                     ReactDOM.render(component, node);
                     //console.log(res);
-                }else{
+                } else {
                     alert("FALLÓ OPERACIÓN, ESPERE UN MOMENTO Y VUELVA A INTENTARLO ")
                 }
             });
@@ -323,11 +326,40 @@ class ListarComponentes extends Component {
         ReactDOM.render(component, node);
     }
 
+    expandirTabla(e) {
+        if (!this.state.expand) {
+            this.setState({ expand: true });
+            e.target.innerHTML = "VER MENOS";
+        } else {
+            this.setState({ expand: false });
+            e.target.innerHTML = "VER MÁS";
+        }
+        console.log(this.state.expand);
+    }
+
     render() {
         const listado = this.state.data;
         //console.log(listado);
         return (
+
             <div className="table-scroll">
+                <div className="botones">
+                    {/* <div className="container">
+                            <button id="btnNuevaR"  onClick={this.handleNuevo} className="btn btn-outline-success">Nueva</button>
+                        </div> */}
+                    <div className={this.state.isNew ? "block" : "none"}>
+                        <button
+                            id="Registrar"
+                            onClick={this.handleEnviarData}
+                            className="btn btn-outline-success"
+                        >
+                            Registrar
+              </button>
+                    </div>
+                    <div>
+                        <button className="btn btn-outline-primary" onClick={e => this.expandirTabla(e)}>VER MÁS</button>
+                    </div>
+                </div>
                 <table className="table table-striped table-bordered table-hover">
                     <thead>
                         <tr className="tabla-cabecera">
@@ -335,15 +367,17 @@ class ListarComponentes extends Component {
                             <th>Nombre Apellido</th>
                             <th>Concepto</th>
                             <th>Descripcion</th>
-                            <th>Sigla Programa</th>
+                            <th>Programa</th>
                             <th>Codigo</th>
                             <th>Recibo</th>
                             <th>Moneda</th>
                             <th>Importe</th>
                             <th>Fecha</th>
-                            <th>Ubicación</th>
-                            <th>Verificar</th>
-                            <th>Observaciones</th>
+                            <th className={this.state.expand ? "" : "d-none"}>Ubicación</th>
+                            <th className={this.state.expand ? "" : "d-none"}>Cuenta del Banco</th>
+                            <th className={this.state.expand ? "" : "d-none"}>Tipo de Carga</th>
+                            <th className={this.state.expand ? "" : "d-none"}>Verificar</th>
+                            <th className={this.state.expand ? "" : "d-none"}>Observaciones</th>
                         </tr>
                     </thead>
                     <tbody>{listado.map((dynamicData, i) =>
@@ -358,20 +392,32 @@ class ListarComponentes extends Component {
                             <td>{dynamicData.moneda}</td>
                             <td>{dynamicData.mascara} {dynamicData.importe}</td>
                             <td>{dynamicData.fecha}</td>
-                            <td><Combo items={this.state.ubicDato} val={this.handleChangeUbic} ubic={dynamicData.ubic}
-                                id_rec={dynamicData.id_rec} />
+                            <td className={this.state.expand ? "" : "d-none"}>
+                                <Combo
+                                    items={this.state.ubicDato}
+                                    val={this.handleChangeUbic}
+                                    ubic={dynamicData.ubic}
+                                    id_rec={dynamicData.id_rec}
+                                />
                             </td>
-                            <td>
-                                <Check validado={dynamicData.validado} id={dynamicData.id_rec}
-                                    change={this.handleChangeEstado} />
+
+                            <td className={this.state.expand ? "" : "d-none"}>{dynamicData.tipo}</td>
+                            <td className={this.state.expand ? "" : "d-none"}>{dynamicData.id_registro}</td>
+                            <td className={this.state.expand ? "" : "d-none"}>
+                                <Check
+                                    validado={dynamicData.validado}
+                                    id={dynamicData.id_rec}
+                                    change={this.handleChangeEstado}
+                                    disabled={true}
+                                />
                             </td>
-                            <td className="two-fields">
+                            <td className={this.state.expand ? "two-fields" : "d-none"}>
                                 <button id={dynamicData.observacion} name={dynamicData.id_rec}
                                     onClick={(e) => this.openModal(dynamicData.id_rec, dynamicData.obs)} className="btn btn-primary">
                                     <span className="mybtn-red glyphicon glyphicon-eye-open"></span>
                                 </button>
-                                <button id={dynamicData.observacion_upg} name={dynamicData.id_rec}
-                                    onClick={(e) => this.openModalUpg(dynamicData.id_rec, dynamicData.obs_upg)} className="btn btn-primary">
+                                <button id={dynamicData.observacion} name={dynamicData.id_rec}
+                                    onClick={(e) => this.openModal(dynamicData.id_rec, dynamicData.obs)} className="btn btn-primary">
                                     <span className="mybtn-blue glyphicon glyphicon-eye-open"></span>
                                 </button>
                             </td>
@@ -379,10 +425,10 @@ class ListarComponentes extends Component {
                     )}
                     </tbody>
                 </table>
-                <div className="center-block">
-                    <button id="Enviar" onClick={this.handleEnviarData} className="btn-enviar">Registrar</button>
+                <div>
                 </div>
             </div >
+
         );
     }
 }

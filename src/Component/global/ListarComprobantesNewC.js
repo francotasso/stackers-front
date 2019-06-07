@@ -215,7 +215,7 @@ class ListarComponentes extends Component {
     validado,
     nombre,
     concepto,
-    descripcion,
+    descripcion_min,
     sigla_programa,
     id_programa,
     id_registro,
@@ -235,7 +235,7 @@ class ListarComponentes extends Component {
     this.validado = validado;
     this.nombre = nombre;
     this.concepto = concepto;
-    this.descripcion = descripcion;
+    this.descripcion_min = descripcion_min;
     this.sigla_programa = sigla_programa;
     this.id_programa = id_programa;
     this.id_registro = id_registro;

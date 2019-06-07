@@ -59,7 +59,7 @@ class ListarComponentes extends Component {
             item.validado,
             item.nombre,
             item.concepto,
-            item.descripcion,
+            item.descripcion_min,
             item.sigla_programa,
             item.id_programa,
             item.id_registro,
@@ -512,7 +512,7 @@ class ListarComponentes extends Component {
                     {dynamicData.nombre}
                   </td>
                   <td>{dynamicData.concepto}</td>
-                  <td className="text-left">{dynamicData.descripcion}</td>
+                  <td className="text-left">{dynamicData.descripcion_min}</td>
                   <td>{dynamicData.codigo}</td>
                   <td>{dynamicData.sigla_programa}</td>
                   <td>{dynamicData.recibo}</td>

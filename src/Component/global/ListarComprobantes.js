@@ -42,10 +42,10 @@ class ListarComponentes extends Component {
         if (lista !== null) {
             lista.map((item, key) => {
                 arreglo = arreglo.concat(new this.Obj(item.id_rec, item.observacion, item.observacion_upg, item.id_ubicacion
-                    && item.id_ubicacion, item.validado, item.nombre,
-                    item.concepto, item.descripcion, item.sigla_programa, item.id_programa,
+                    && item.id_ubicacion,item.tipo ,item.validado, item.nombre,
+                    item.concepto, item.descripcion_min, item.sigla_programa, item.id_programa,
                     item.id_registro, item.codigo, item.recibo, item.moneda, item.mascara,
-                    item.importe, item.fecha, item.dni, item.nombre_programa
+                    item.importe, item.fecha, item.id_alum
                 ));
                 return null;
             });
@@ -128,26 +128,29 @@ class ListarComponentes extends Component {
     }
 
     //crea un objeto para pasar al hijo
-    Obj(id_rec, obs, obs_upg, ubic, validado, nombre, concepto, descripcion, sigla_programa, codigo, id_registro, tipo, recibo,
-        moneda, mascara, importe, fecha, dni, nombre_programa) {
+    Obj(id_rec, obs, obs_upg, ubic,tipo,validado, nombre, concepto, descripcion_min, sigla_programa,id_programa,id_registro,codigo, recibo,
+        moneda, mascara, importe, fecha, id_alum) {
         this.id_rec = id_rec;
         this.obs = obs;
         this.obs_upg = obs_upg;
         this.ubic = ubic;
+        this.tipo = tipo;
         this.validado = validado;
         this.nombre = nombre;
         this.concepto = concepto;
-        this.descripcion = descripcion;
+        this.descripcion_min = descripcion_min;
         this.sigla_programa = sigla_programa;
-        this.codigo = codigo;
+        this.id_programa =id_programa;
         this.id_registro = id_registro;
-        this.tipo = tipo;
+        this.codigo = codigo;
         this.recibo = recibo;
         this.moneda = moneda;
         this.mascara = mascara;
         this.importe = importe;
-        this.dni = dni;
-        this.nombre_programa = nombre_programa;
+        this.fecha =
+      fecha &&
+      fecha.substr(8, 2) + "-" + fecha.substr(5, 2) + "-" + fecha.substr(0, 4);
+        this.id_alum = id_alum;
         //console.log(convertDateFormat(fecha.substr(0,10)));
         if (fecha !== null) {
             let fTemp = fecha.substr(0, 10).split("-");
@@ -385,7 +388,7 @@ class ListarComponentes extends Component {
                             <td>{i + 1}</td>
                             <td onClick={(e) => this.eventoNombre(e)} title="click para ver detalles" className="detalles" id={(dynamicData.codigo === "0") ? (dynamicData.nombre) : (dynamicData.codigo)}>{dynamicData.nombre}</td>
                             <td>{dynamicData.concepto}</td>
-                            <td>{dynamicData.descripcion}</td>
+                            <td>{dynamicData.descripcion_min}</td>
                             <td>{dynamicData.sigla_programa}</td>
                             <td>{dynamicData.codigo}</td>
                             <td>{dynamicData.recibo}</td>

@@ -217,7 +217,7 @@ class MyModal extends Component {
         for (let m = 0; m < dat2.length; m++) {
 
             if (dat2) {
-                lista = [m + 1, this.state.dataAlterar[m].codigo, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
+                lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
                 console.log(lista);
                 listadoFinal.push(lista)
             }

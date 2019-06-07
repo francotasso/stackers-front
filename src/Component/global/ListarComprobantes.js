@@ -388,7 +388,7 @@ class ListarComponentes extends Component {
                             <td>{i + 1}</td>
                             <td onClick={(e) => this.eventoNombre(e)} title="click para ver detalles" className="detalles" id={(dynamicData.codigo === "0") ? (dynamicData.nombre) : (dynamicData.codigo)}>{dynamicData.nombre}</td>
                             <td>{dynamicData.concepto}</td>
-                            <td>{dynamicData.descripcion_min}</td>
+                            <td className="text-left">{dynamicData.descripcion_min}</td>
                             <td>{dynamicData.sigla_programa}</td>
                             <td>{dynamicData.codigo}</td>
                             <td>{dynamicData.recibo}</td>

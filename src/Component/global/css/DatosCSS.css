@@ -71,6 +71,7 @@ td{
 .contenedor-flex{
   display: flex;
   width: 20%;
+  margin-top: -3%;
 }
 
 .flex-sb{

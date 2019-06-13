@@ -459,15 +459,6 @@ class ListarComponentes extends Component {
               <div>
                 <button className="btn btn-outline-primary" onClick={e => this.expandirTabla(e)}>VER MÁS</button>
               </div>
-              <div>
-                <button
-                  id="Registrar"
-                  onClick={this.handleEnviarData}
-                  className="btn btn-outline-danger"
-                >
-                  Registrar
-                </button>
-              </div>
             </div>
           </div>
           <table

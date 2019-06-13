@@ -378,9 +378,9 @@ class ListarComponentes extends Component {
                             <th>Moneda</th>
                             <th>Importe</th>
                             <th>Fecha</th>
-                            <th className={this.state.expand ? "" : "d-none"}>Ubicación</th>
-                            <th className={this.state.expand ? "" : "d-none"}>Verificar</th>
-                            <th className={this.state.expand ? "" : "d-none"}>Observaciones</th>
+                            <th>Ubicación</th>
+                            <th>Verificar</th>
+                            <th>Observaciones</th>
                             <th className={this.state.expand ? "" : "d-none"}>Cuenta del Banco</th>
                             <th className={this.state.expand ? "" : "d-none"}>Tipo de Carga</th>
                         </tr>
@@ -397,7 +397,7 @@ class ListarComponentes extends Component {
                             <td>{dynamicData.moneda}</td>
                             <td>{dynamicData.mascara} {dynamicData.importe}</td>
                             <td>{dynamicData.fecha}</td>
-                            <td className={this.state.expand ? "" : "d-none"}>
+                            <td>
                                 <Combo
                                     items={this.state.ubicDato}
                                     val={this.handleChangeUbic}
@@ -405,7 +405,7 @@ class ListarComponentes extends Component {
                                     id_rec={dynamicData.id_rec}
                                 />
                             </td>
-                            <td className={this.state.expand ? "" : "d-none"}>
+                            <td>
                                 <Check
                                     validado={dynamicData.validado}
                                     id={dynamicData.id_rec}
@@ -413,7 +413,7 @@ class ListarComponentes extends Component {
                                     disabled={true}
                                 />
                             </td>
-                            <td className={this.state.expand ? "two-fields" : "d-none"}>
+                            <td className="two-fields">
                                 <button id={dynamicData.observacion} name={dynamicData.id_rec}
                                     onClick={(e) => this.openModal(dynamicData.id_rec, dynamicData.obs)} className="btn btn-primary">
                                     <span className="mybtn-red glyphicon glyphicon-eye-open"></span>

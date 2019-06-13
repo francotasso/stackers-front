@@ -454,18 +454,20 @@ class ListarComponentes extends Component {
           <div className="botones">
             {/* <div className="container">
                             <button id="btnNuevaR"  onClick={this.handleNuevo} className="btn btn-outline-success">Nueva</button>
-                        </div> */}
-            <div className={this.state.isNew ? "block" : "none"}>
-              <button
-                id="Registrar"
-                onClick={this.handleEnviarData}
-                className="btn btn-outline-success"
-              >
-                Registrar
-              </button>
-            </div>
-            <div>
-              <button className="btn btn-outline-primary" onClick={e => this.expandirTabla(e)}>VER MÁS</button>
+                        </div> */}           
+            <div className="contenedor-flex flex-sb">
+              <div>
+                <button className="btn btn-outline-primary" onClick={e => this.expandirTabla(e)}>VER MÁS</button>
+              </div>
+              <div>
+                <button
+                  id="Registrar"
+                  onClick={this.handleEnviarData}
+                  className="btn btn-outline-danger"
+                >
+                  Registrar
+                </button>
+              </div>
             </div>
           </div>
           <table

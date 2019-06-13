@@ -42,7 +42,7 @@ class ListarComponentes extends Component {
         if (lista !== null) {
             lista.map((item, key) => {
                 arreglo = arreglo.concat(new this.Obj(item.id_rec, item.observacion, item.observacion_upg, item.id_ubicacion
-                    && item.id_ubicacion,item.tipo ,item.validado, item.nombre,
+                    && item.id_ubicacion, item.tipo, item.validado, item.nombre,
                     item.concepto, item.descripcion_min, item.sigla_programa, item.id_programa,
                     item.id_registro, item.codigo, item.recibo, item.moneda, item.mascara,
                     item.importe, item.fecha, item.id_alum
@@ -128,7 +128,7 @@ class ListarComponentes extends Component {
     }
 
     //crea un objeto para pasar al hijo
-    Obj(id_rec, obs, obs_upg, ubic,tipo,validado, nombre, concepto, descripcion_min, sigla_programa,id_programa,id_registro,codigo, recibo,
+    Obj(id_rec, obs, obs_upg, ubic, tipo, validado, nombre, concepto, descripcion_min, sigla_programa, id_programa, id_registro, codigo, recibo,
         moneda, mascara, importe, fecha, id_alum) {
         this.id_rec = id_rec;
         this.obs = obs;
@@ -140,7 +140,7 @@ class ListarComponentes extends Component {
         this.concepto = concepto;
         this.descripcion_min = descripcion_min;
         this.sigla_programa = sigla_programa;
-        this.id_programa =id_programa;
+        this.id_programa = id_programa;
         this.id_registro = id_registro;
         this.codigo = codigo;
         this.recibo = recibo;
@@ -148,8 +148,8 @@ class ListarComponentes extends Component {
         this.mascara = mascara;
         this.importe = importe;
         this.fecha =
-      fecha &&
-      fecha.substr(8, 2) + "-" + fecha.substr(5, 2) + "-" + fecha.substr(0, 4);
+            fecha &&
+            fecha.substr(8, 2) + "-" + fecha.substr(5, 2) + "-" + fecha.substr(0, 4);
         this.id_alum = id_alum;
         //console.log(convertDateFormat(fecha.substr(0,10)));
         if (fecha !== null) {
@@ -350,17 +350,19 @@ class ListarComponentes extends Component {
                     {/* <div className="container">
                             <button id="btnNuevaR"  onClick={this.handleNuevo} className="btn btn-outline-success">Nueva</button>
                         </div> */}
-                    <div className={this.state.isNew ? "block" : "none"}>
-                        <button
-                            id="Registrar"
-                            onClick={this.handleEnviarData}
-                            className="btn btn-outline-success"
-                        >
-                            Registrar
-              </button>
-                    </div>
-                    <div>
-                        <button className="btn btn-outline-primary" onClick={e => this.expandirTabla(e)}>VER MÁS</button>
+                    <div className="contenedor-flex flex-sb">
+                        <div>
+                            <button className="btn btn-outline-primary" onClick={e => this.expandirTabla(e)}>VER MÁS</button>
+                        </div>
+                        <div>
+                            <button
+                                id="Registrar"
+                                onClick={this.handleEnviarData}
+                                className="btn btn-outline-danger"
+                            >
+                                Registrar
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <table className="table table-striped table-bordered table-hover">

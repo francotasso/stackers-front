@@ -290,12 +290,13 @@ class ListarComponentes extends Component {
         // console.log(JSON.stringify(arreglo));
         //https://github.com/calambrenet/react-table/blob/master/src/react-table.jsx
     }
-    eventoNombre(e) {
+    eventoNombre(e,p,d) {
 
         let nom = e.target.innerHTML;
         let id = e.target.id;
         var groupList = [];
         var listadoOrdenado;
+
         //console.log(e.target.innerHTML);
         if (id === nom) {
             listadoOrdenado = this.state.data.sort(function (a, b) {
@@ -324,7 +325,7 @@ class ListarComponentes extends Component {
             //  console.log(listadoOrdenado);
             groupList = this.groupBy(listadoOrdenado, "codigo");
         }
-        let component = <Modal2 text={groupList} nombre={nom} codigo={id} estado={true} />;
+        let component = <Modal2 text={groupList} nombre={nom} codigo={id} estado={true} programa={p} dni={d}/>;
         let node = document.createElement('div');
         ReactDOM.render(component, node);
     }
@@ -342,6 +343,7 @@ class ListarComponentes extends Component {
 
     render() {
         const listado = this.state.data;
+
         //console.log(listado);
         return (
 
@@ -388,7 +390,7 @@ class ListarComponentes extends Component {
                     <tbody>{listado.map((dynamicData, i) =>
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            <td onClick={(e) => this.eventoNombre(e)} title="click para ver detalles" className="detalles" id={(dynamicData.codigo === "0") ? (dynamicData.nombre) : (dynamicData.codigo)}>{dynamicData.nombre}</td>
+                            <td onClick={(e) => this.eventoNombre(e,dynamicData.sigla_programa,dynamicData.dni)} title="click para ver detalles" className="detalles" id={(dynamicData.codigo === "0") ? (dynamicData.nombre) : (dynamicData.codigo)}>{dynamicData.nombre}</td>
                             <td>{dynamicData.concepto}</td>
                             <td className="text-left">{dynamicData.descripcion_min}</td>
                             <td>{dynamicData.sigla_programa}</td>

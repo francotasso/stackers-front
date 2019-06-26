@@ -19,25 +19,11 @@ class MyModal extends Component {
             data: null,
             dataAlterar: null,
             index: 0,
-            modal: false,
-            programa: ""
+            modal: false
         }
     }
     componentWillMount() {
         const { text, nombre, codigo, estado } = this.props;
-        this.setState({ programa: this.props.programa });
-        
-
-
-        console.log("dfgjdhgjkdfghjdsghsdfjg");
-        console.log(this.props.nombre);
-        console.log(this.props.programa);
-        console.log(this.props.dni);
-
-
-
-
-
         let arre = [];
         //  console.log(text);
         let i = 0;
@@ -67,7 +53,7 @@ class MyModal extends Component {
                 }
                 return null;
             });
-            arre = text[Object.keys(text)[i]].sort((a, b) => {
+            arre = [Object.keys(text)[i]].sort((a, b) => {
                 if (a.nombre > b.nombre) {
                     return 1;
                 }
@@ -382,11 +368,11 @@ class MyModal extends Component {
         doc.setFont("helvetica");
         doc.setFontType("normal");
         doc.setFontSize(9);
-        if (this.state.programa == null) {
+        if (this.state.data[0].sigla_programa == null) {
             doc.text("  ", 150, 180);
         }
         else {
-            doc.text(this.state.programa, 150, 180); //AQUI VA EL DNI
+            doc.text(this.state.data[0].sigla_programa, 150, 180); //AQUI VA EL DNI
         }
         //doc.text(this.state.data[0].nombre_programa, 150, 180);//programa
 

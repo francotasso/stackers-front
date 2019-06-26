@@ -44,7 +44,7 @@ class ListarComponentes extends Component {
                 arreglo = arreglo.concat(new this.Obj(item.id_rec, item.observacion, item.observacion_upg, item.id_ubicacion
                     && item.id_ubicacion, item.tipo, item.validado, item.nombre,
                     item.concepto, item.descripcion_min, item.sigla_programa, item.id_programa,
-                    item.id_registro, item.codigo, item.recibo, item.moneda, item.mascara,
+                    item.id_registro, item.codigo, item.dni, item.recibo, item.moneda, item.mascara,
                     item.importe, item.fecha, item.id_alum
                 ));
                 return null;
@@ -128,7 +128,7 @@ class ListarComponentes extends Component {
     }
 
     //crea un objeto para pasar al hijo
-    Obj(id_rec, obs, obs_upg, ubic, tipo, validado, nombre, concepto, descripcion_min, sigla_programa, id_programa, id_registro, codigo, recibo,
+    Obj(id_rec, obs, obs_upg, ubic, tipo, validado, nombre, concepto, descripcion_min, sigla_programa, id_programa, id_registro, codigo, dni, recibo,
         moneda, mascara, importe, fecha, id_alum) {
         this.id_rec = id_rec;
         this.obs = obs;
@@ -143,6 +143,7 @@ class ListarComponentes extends Component {
         this.id_programa = id_programa;
         this.id_registro = id_registro;
         this.codigo = codigo;
+        this.dni = dni;
         this.recibo = recibo;
         this.moneda = moneda;
         this.mascara = mascara;
@@ -290,13 +291,12 @@ class ListarComponentes extends Component {
         // console.log(JSON.stringify(arreglo));
         //https://github.com/calambrenet/react-table/blob/master/src/react-table.jsx
     }
-    eventoNombre(e,p,d) {
+    eventoNombre(e) {
 
         let nom = e.target.innerHTML;
         let id = e.target.id;
         var groupList = [];
         var listadoOrdenado;
-
         //console.log(e.target.innerHTML);
         if (id === nom) {
             listadoOrdenado = this.state.data.sort(function (a, b) {
@@ -325,7 +325,7 @@ class ListarComponentes extends Component {
             //  console.log(listadoOrdenado);
             groupList = this.groupBy(listadoOrdenado, "codigo");
         }
-        let component = <Modal2 text={groupList} nombre={nom} codigo={id} estado={true} programa={p} dni={d}/>;
+        let component = <Modal2 text={groupList} nombre={nom} codigo={id} estado={true} />;
         let node = document.createElement('div');
         ReactDOM.render(component, node);
     }
@@ -343,7 +343,6 @@ class ListarComponentes extends Component {
 
     render() {
         const listado = this.state.data;
-
         //console.log(listado);
         return (
 
@@ -390,7 +389,7 @@ class ListarComponentes extends Component {
                     <tbody>{listado.map((dynamicData, i) =>
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            <td onClick={(e) => this.eventoNombre(e,dynamicData.sigla_programa,dynamicData.dni)} title="click para ver detalles" className="detalles" id={(dynamicData.codigo === "0") ? (dynamicData.nombre) : (dynamicData.codigo)}>{dynamicData.nombre}</td>
+                            <td onClick={(e) => this.eventoNombre(e)} title="click para ver detalles" className="detalles" id={(dynamicData.codigo === "0") ? (dynamicData.nombre) : (dynamicData.codigo)}>{dynamicData.nombre}</td>
                             <td>{dynamicData.concepto}</td>
                             <td className="text-left">{dynamicData.descripcion_min}</td>
                             <td>{dynamicData.sigla_programa}</td>

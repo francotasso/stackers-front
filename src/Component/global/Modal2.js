@@ -217,7 +217,12 @@ class MyModal extends Component {
         for (let m = 0; m < dat2.length; m++) {
 
             if (dat2) {
-                lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
+                if(this.state.dataAlterar[m].moneda=='SOL'){
+                    lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "S/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
+                }else{
+                    lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "$/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
+                }
+                //lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "S/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
                 console.log(lista);
                 listadoFinal.push(lista)
             }
@@ -462,7 +467,7 @@ class MyModal extends Component {
             first = doc.autoTable.previous;
             doc.setFont("helvetica");
             doc.setFontType("bold");
-            doc.setFontSize(11);
+            doc.setFontSize(10); //cambioooooooo
             doc.text("TOTAL CANCELADO SOLES: S/." + this.sumaTotalSoles(), 520, first.finalY + 25);
             //  doc.text("TOTAL CANCELADO: S/."+this.sumaTotalSoles,620,first.finalY+25);
         }
@@ -470,7 +475,7 @@ class MyModal extends Component {
             first = doc.autoTable.previous;
             doc.setFont("helvetica");
             doc.setFontType("bold");
-            doc.setFontSize(11);
+            doc.setFontSize(10);
             doc.text("TOTAL CANCELADO DOLARES: S/." + this.sumaTotalDolares(), 520, first.finalY + 50);
             //  doc.text("TOTAL CANCELADO: S/."+this.sumaTotalSoles,620,first.finalY+25);
         }

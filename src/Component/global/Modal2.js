@@ -476,7 +476,7 @@ class MyModal extends Component {
             doc.setFont("helvetica");
             doc.setFontType("bold");
             doc.setFontSize(10);
-            doc.text("TOTAL CANCELADO DOLARES: S/." + this.sumaTotalDolares(), 520, first.finalY + 50);
+            doc.text("TOTAL CANCELADO DOLARES: $/." + this.sumaTotalDolares(), 520, first.finalY + 50);
             //  doc.text("TOTAL CANCELADO: S/."+this.sumaTotalSoles,620,first.finalY+25);
         }
 

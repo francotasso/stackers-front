@@ -219,8 +219,15 @@ class MyModal extends Component {
             if (dat2) {
                 if(this.state.dataAlterar[m].moneda=='SOL'){
                     lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "S/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
-                }else{
+                }
+                if(this.state.dataAlterar[m].moneda=='DOL'){
                     lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "$/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
+                }
+                if(this.state.dataAlterar[m].recibo == 'Subsuma Dolares'){
+                    lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "$/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
+                }
+                if(this.state.dataAlterar[m].recibo == 'Subsuma Soles'){
+                    lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "S/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
                 }
                 //lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "S/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
                 console.log(lista);

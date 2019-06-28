@@ -217,16 +217,16 @@ class MyModal extends Component {
         for (let m = 0; m < dat2.length; m++) {
 
             if (dat2) {
-                if(this.state.dataAlterar[m].moneda=='SOL'){
+                if (this.state.dataAlterar[m].moneda == 'SOL') {
                     lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "S/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
                 }
-                if(this.state.dataAlterar[m].moneda=='DOL'){
+                if (this.state.dataAlterar[m].moneda == 'DOL') {
                     lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "$/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
                 }
-                if(this.state.dataAlterar[m].recibo == 'Subsuma Dolares'){
+                if (this.state.dataAlterar[m].recibo == 'Subsuma Dolares') {
                     lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "$/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
                 }
-                if(this.state.dataAlterar[m].recibo == 'Subsuma Soles'){
+                if (this.state.dataAlterar[m].recibo == 'Subsuma Soles') {
                     lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "S/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
                 }
                 //lista = [m + 1, this.state.dataAlterar[m].concepto, this.state.dataAlterar[m].recibo, this.state.dataAlterar[m].moneda, "S/." + this.state.dataAlterar[m].importe, this.state.dataAlterar[m].fecha]
@@ -380,11 +380,11 @@ class MyModal extends Component {
         doc.setFont("helvetica");
         doc.setFontType("normal");
         doc.setFontSize(9);
-        if (this.state.data[0].sigla_programa == null) {
+        if (this.state.data[0].nombre_programa == null) {
             doc.text("  ", 150, 180);
         }
         else {
-            doc.text(this.state.data[0].sigla_programa, 150, 180); //AQUI VA EL DNI
+            doc.text(this.state.data[0].nombre_programa, 150, 180); //AQUI VA EL DNI
         }
         //doc.text(this.state.data[0].nombre_programa, 150, 180);//programa
 

@@ -39,11 +39,13 @@ class ListarComponentes extends Component {
     componentWillMount() {
         let arreglo = [];
         const lista = this.props.listado;
+        console.log("Esta es la lista");
+        console.log(lista);
         if (lista !== null) {
             lista.map((item, key) => {
                 arreglo = arreglo.concat(new this.Obj(item.id_rec, item.observacion, item.observacion_upg, item.id_ubicacion
                     && item.id_ubicacion, item.tipo, item.validado, item.nombre,
-                    item.concepto, item.descripcion_min, item.sigla_programa, item.id_programa,
+                    item.concepto, item.descripcion_min, item.nombre_programa, item.id_programa, item.sigla_programa,
                     item.id_registro, item.codigo, item.dni, item.recibo, item.moneda, item.mascara,
                     item.importe, item.fecha, item.id_alum
                 ));
@@ -128,7 +130,7 @@ class ListarComponentes extends Component {
     }
 
     //crea un objeto para pasar al hijo
-    Obj(id_rec, obs, obs_upg, ubic, tipo, validado, nombre, concepto, descripcion_min, sigla_programa, id_programa, id_registro, codigo, dni, recibo,
+    Obj(id_rec, obs, obs_upg, ubic, tipo, validado, nombre, concepto, descripcion_min, nombre_programa, id_programa, sigla_programa, id_registro, codigo, dni, recibo,
         moneda, mascara, importe, fecha, id_alum) {
         this.id_rec = id_rec;
         this.obs = obs;
@@ -139,8 +141,9 @@ class ListarComponentes extends Component {
         this.nombre = nombre;
         this.concepto = concepto;
         this.descripcion_min = descripcion_min;
-        this.sigla_programa = sigla_programa;
+        this.nombre_programa = nombre_programa;
         this.id_programa = id_programa;
+        this.sigla_programa = sigla_programa;
         this.id_registro = id_registro;
         this.codigo = codigo;
         this.dni = dni;

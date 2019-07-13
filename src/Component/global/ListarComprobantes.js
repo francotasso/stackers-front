@@ -27,12 +27,16 @@ class ListarComponentes extends Component {
         this.verificar = this.verificar.bind(this);
         this.groupBy = this.groupBy.bind(this);
         this.eventoNombre = this.eventoNombre.bind(this);
+        this.handleSeleccionar = this.handleSeleccionar.bind(this);
+
         this.state = {
             data: null,
             dataOrdenada: null,
             ubicDato: [],
             JSON: [],
-            isLoading: false
+            isLoading: false,
+            seleccionar: false,
+            codigo: ""
         }
     }
 
@@ -166,6 +170,11 @@ class ListarComponentes extends Component {
         }
         else this.fecha = fecha;
     }
+
+    handleSeleccionar(n, c, s) {
+        this.props.handleRow(n, c, s);
+    }
+
     //recibe las ubicaciones de los archivos
     handleChangeUbic(ubic, id_rec) {
         //console.log(ubic);
@@ -219,6 +228,7 @@ class ListarComponentes extends Component {
         ));
         //console.log(this.state.data);
     }
+
     groupBy(xs, key) {
         return xs.reduce(function (rv, x) {
             (rv[x[key]] = rv[x[key]] || []).push(x);
@@ -372,6 +382,7 @@ class ListarComponentes extends Component {
                 <table className="table table-striped table-bordered table-hover">
                     <thead>
                         <tr className="tabla-cabecera">
+                            <th>Seleccionar</th>
                             <th>Nro</th>
                             <th>Nombre Apellido</th>
                             <th>Concepto</th>
@@ -391,6 +402,7 @@ class ListarComponentes extends Component {
                     </thead>
                     <tbody>{listado.map((dynamicData, i) =>
                         <tr key={i}>
+                            <input id="select" type="radio" className="DatosCSS-input-checkbox" name="seleccionar" onClick={e => this.handleSeleccionar(dynamicData.nombre, dynamicData.codigo, dynamicData.sigla_programa)} />
                             <td>{i + 1}</td>
                             <td onClick={(e) => this.eventoNombre(e)} title="click para ver detalles" className="detalles" id={(dynamicData.codigo === "0") ? (dynamicData.nombre) : (dynamicData.codigo)}>{dynamicData.nombre}</td>
                             <td>{dynamicData.concepto}</td>

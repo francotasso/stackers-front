@@ -2,20 +2,23 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Listardatos from "./ListarComprobantesNewC";
 import URL from "./API/API";
+import { ModalManager } from "react-dynamic-modal";
+import Modal2 from "./MyModalNewC";
 import "./css/Content.css";
 import "./css/bootstrap.css";
 //import $ from "jquery";
 
 class Content extends Component {
-  constructor() {
-    super();
-
+  constructor(...props) {
+    super(...props);
     this.state = {
       lista: null,
       nombre_apellido: "",
       concepto: "",
       dni: "",
+      nombre: "",
       codigo: "",
+      sigla: "",
       recibo: "",
       dates: "",
       dates2: "",
@@ -38,6 +41,25 @@ class Content extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.mostrarData = this.mostrarData.bind(this);
   }
+
+  componentDidMount() {
+    if (this.props.codigo != null) {
+      console.log("Hola hola me estoy ejecutando");
+      let cod = this.props.codigo.split("-")[0];
+      let nom = this.props.codigo.split("-")[1];
+      let sig = this.props.codigo.split("-")[2];
+      if (cod != "" && nom != "" && sig != "") {
+        ModalManager.open(
+          <Modal2
+            nombre={nom}
+            codigo={cod}
+            sigla={sig}
+          />
+        );
+      }
+    }
+  }
+
   // leer del input Concepto
   handleInputConcepto(data) {
     this.setState({

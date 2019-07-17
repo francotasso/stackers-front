@@ -382,7 +382,6 @@ class ListarComponentes extends Component {
                 <table className="table table-striped table-bordered table-hover">
                     <thead>
                         <tr className="tabla-cabecera">
-                            <th>Seleccionar</th>
                             <th>Nro</th>
                             <th>Nombre Apellido</th>
                             <th>Concepto</th>
@@ -402,7 +401,6 @@ class ListarComponentes extends Component {
                     </thead>
                     <tbody>{listado.map((dynamicData, i) =>
                         <tr key={i}>
-                            <input id="select" type="radio" className="DatosCSS-input-checkbox" name="seleccionar" onClick={e => this.handleSeleccionar(dynamicData.nombre, dynamicData.codigo, dynamicData.sigla_programa)} />
                             <td>{i + 1}</td>
                             <td onClick={(e) => this.eventoNombre(e)} title="click para ver detalles" className="detalles" id={(dynamicData.codigo === "0") ? (dynamicData.nombre) : (dynamicData.codigo)}>{dynamicData.nombre}</td>
                             <td>{dynamicData.concepto}</td>

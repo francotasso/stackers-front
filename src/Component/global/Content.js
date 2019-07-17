@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import Listardatos from './ListarComprobantes';
 import URL from './API/API';
 import { Link } from "react-router-dom";
+import { ModalManager } from "react-dynamic-modal";
+import Modal2 from "./MyModalNewC";
 import './css/Content.css';
 import './css/bootstrap.css';
 
 class Content extends Component {
-    constructor(...props) {
-        super(...props);
+    constructor() {
+        super();
 
         this.state = {
             lista: null,
@@ -22,9 +24,10 @@ class Content extends Component {
             estado: false,
             operacion: '',
             isLoading: false,
-            nom: "",
-            cod: "",
-            sig: ""
+            nombre: "",
+            sigla: "",
+            idPrograma: "",
+            id: ""
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -39,15 +42,25 @@ class Content extends Component {
         this.mostrarData = this.mostrarData.bind(this);
         this.limpiar = this.limpiar.bind(this)
         this.vaciado = this.vaciado.bind(this);
-        this.handleRow = this.handleRow.bind(this);
+        this.handleAddClick = this.handleAddClick.bind(this);
     }
 
-    handleRow(n, c, s) {
-        this.setState({
-            nom: n,
-            cod: c,
-            sig: s,
-        });
+    handleAddClick(e, cod) {
+        if (cod != "") {
+            ModalManager.open(
+                <Modal2
+                    id={this.state.id}
+                    nombre={this.state.nombre}
+                    codigo={cod}
+                    sigla={this.state.sigla}
+                    idPrograma={this.state.idPrograma}
+                />
+            );
+            e.preventDefault();
+        } else {
+            alert("Ingrese un código");
+            e.preventDefault();
+        }
     }
 
     // leer del input Concepto
@@ -63,7 +76,17 @@ class Content extends Component {
             // console.log(this.state.lista);
             switch (this.state.operacion) {
                 case "V": contenedor = (<div className="alert alert-info">{this.state.mensaje}</div>); break;
-                case true: contenedor = (<div><Listardatos listado={this.state.lista} handleRow={this.handleRow.bind(this)} /></div>); break;
+                case true: contenedor = (<div><Listardatos listado={this.state.lista}
+                    /* JDLC ADD => DATA TO ListarComprobantes Component */
+                    nombreUpdate={this.state.nombre_apellido}
+                    periodoIUpdate={this.state.dates}
+                    conceptoUpdate={this.state.concepto}
+                    periodoFUpdate={this.state.dates2}
+                    voucherUpdate={this.state.voucher}
+                    dniUpdate={this.state.dni}
+                    codigoUpdate={this.state.codigo}
+
+                /></div>); break;
                 case false: contenedor = (<div className="alert alert-info">{this.state.mensaje}</div>); break;
                 default: contenedor = (<div></div>);
             }
@@ -198,15 +221,21 @@ class Content extends Component {
 
             })
                 .then((response) => {
+                    console.log(response);
                     return response.json()
+
                 })
                 .then(responseJson => {
                     this.setState({
-                        lista: responseJson.data,
+                        lista: responseJson.data, //Todos los datos
                         estado: true,
                         operacion: (responseJson.data !== null && responseJson.data.length !== 0),
                         mensaje: (responseJson.data !== null && responseJson.data.length !== 0) ? ("") : ("Datos no encontrados"),
-                        isLoading: false
+                        isLoading: false,
+                        nombre: responseJson.data[0].nombre,
+                        sigla: responseJson.data[0].sigla_programa,
+                        idPrograma: responseJson.data[0].id_programa,
+                        id: responseJson.data[0].id_alum
                     });
                     //console.log( responseJson.data.length);
                 });
@@ -293,7 +322,7 @@ class Content extends Component {
                                 <div className="Botones">
                                     <div className="Buton-contenedor">
                                         <button id="Buscar" onClick={this.handleSearchClick} className="btn btn-primary">Buscar </button>
-                                        <Link to={(this.state.cod == "") ? "/nueva" : "/nueva/" + this.state.cod + "-" + this.state.nom + "-" + this.state.sig} className="btn btn-primary boton_medio">Agregar</Link>
+                                        <button id="Agregar" onClick={e => this.handleAddClick(e, this.state.codigo)} className="btn btn-primary">Agregar</button>
                                         <a className="btn btn-primary" href="https://siga-fisi.herokuapp.com/dashboard" >Regresar</a>
                                         <button id="Limpiar" onClick={this.limpiar} className="btn btn-primary">Limpiar </button>
                                     </div>
@@ -307,7 +336,10 @@ class Content extends Component {
                 <div className={(this.state.isLoading) ? ("isLoading") : ("listar")}>
                     {this.mostrarData()}
                 </div>
+
             </div>
+
+
         );
 
     }

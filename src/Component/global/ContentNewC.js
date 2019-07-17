@@ -44,7 +44,6 @@ class Content extends Component {
 
   componentDidMount() {
     if (this.props.codigo != null) {
-      console.log("Hola hola me estoy ejecutando");
       let cod = this.props.codigo.split("-")[0];
       let nom = this.props.codigo.split("-")[1];
       let sig = this.props.codigo.split("-")[2];

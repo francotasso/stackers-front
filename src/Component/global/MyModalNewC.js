@@ -36,7 +36,7 @@ class MyModal extends Component {
           data = res;
           //console.log(data);
           // Llenar select de conceptos
-          var x = document.getElementById("concepto");
+          var x = document.getElementById("conceptoPago");
           for (var i = 0; i < data["data"].length; i++) {
             var miOption = document.createElement("option");
             miOption.text = data["data"][i]["concepto"];
@@ -56,12 +56,12 @@ class MyModal extends Component {
     }
     var data = {};
     data.id_alum = this.props.id;
-    data.id_concepto = document.getElementById("concepto").value;
+    data.id_concepto = document.getElementById("conceptoPago").value;
     data.id_registro = 2103;
     data.id_ubicacion = document.getElementById("ubicacion").value;
     data.cod_alum = this.props.codigo;
     data.id_programa = this.props.idPrograma;
-    data.numero = document.getElementById("recibo").value;
+    data.numero = document.getElementById("reciboPago").value;
     data.importe = document.getElementById("importe").value;
     data.observacion = document.getElementById("obs").value;
     data.observacion_upg = document.getElementById("obs_upg").value;
@@ -70,6 +70,7 @@ class MyModal extends Component {
     data.id_tipo = document.getElementById("tipo").value;
     data.moneda = document.getElementById("moneda").value;
     ModalManager.close();
+    console.log(data);
     if (
       data.id_concepto !== "" ||
       data.id_ubicacion !== "" ||
@@ -267,36 +268,36 @@ class MyModal extends Component {
             </div>
             <div className="form-group">
               <label>Concepto de Pago</label>
-              <select required id="concepto" className="form-control" />
+              <select required id="conceptoPago" className="form-control" />
             </div>
-                
-              <div className="form-row">
-                  <div className="form-group col-sm-6">
-                    <label>Código</label>
-                    <input
-                      type="number"
-                      className="form-control px-2"
-                      placeholder="Código"
-                      id="codigo"
-                      value={codigo}
-                      disabled
-                      required
-                    />
-                  </div>
-                  <div className="form-group col-sm-4 m-0">
-                    <label>Programa</label>
-                    <input
-                      type="text"
-                      className="form-control px-2"
-                      placeholder="Siglas"
-                      id="sigla"
-                      value={sigla}
-                      disabled
-                      required
-                    />
-                  </div>
+
+            <div className="form-row">
+              <div className="form-group col-sm-6">
+                <label>Código</label>
+                <input
+                  type="number"
+                  className="form-control px-2"
+                  placeholder="Código"
+                  id="codigo"
+                  value={codigo}
+                  disabled
+                  required
+                />
               </div>
-                  
+              <div className="form-group col-sm-4 m-0">
+                <label>Programa</label>
+                <input
+                  type="text"
+                  className="form-control px-2"
+                  placeholder="Siglas"
+                  id="sigla"
+                  value={sigla}
+                  disabled
+                  required
+                />
+              </div>
+            </div>
+
             <div className="form-group">
               <label>Recibo</label>
               <input
@@ -304,7 +305,7 @@ class MyModal extends Component {
                 min="0"
                 className="form-control"
                 placeholder="Recibo"
-                id="recibo"
+                id="reciboPago"
                 onBlur={this._onBlurInput}
                 required
               />

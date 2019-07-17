@@ -70,6 +70,7 @@ class MyModal extends Component {
     data.id_tipo = document.getElementById("tipo").value;
     data.moneda = document.getElementById("moneda").value;
     ModalManager.close();
+    console.log(data);
     if (
       data.id_concepto !== "" ||
       data.id_ubicacion !== "" ||

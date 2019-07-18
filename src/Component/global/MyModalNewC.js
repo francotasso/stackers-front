@@ -110,7 +110,7 @@ class MyModal extends Component {
   }
 
   _onBlurInput() {
-    let rec_value = document.getElementById("recibo").value;
+    let rec_value = document.getElementById("reciboPago").value;
 
     if (rec_value !== "") {
       const url = URL.url.concat("recibo/" + rec_value);

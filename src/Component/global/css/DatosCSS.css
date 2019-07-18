@@ -1,81 +1,128 @@
+
+.table-scroll .btn-more
+{
+  float: right !important;
+  font-weight: bold !important;
+  background: cadetblue !important;
+  color: white !important;
+  font-size: 16px !important;
+  border: none !important;
+}
+
 .the-icons {
   font-size: 25px;
 }
 
 .DatosCSS-input-checkbox {
-  width: 20px;
-  height: 17px;
-  margin: 40%;
+  width:20px;
+  height:17px;
 }
 
-th {
+th{
   height: 85px;
 }
 
-td {
+td{
   height: 95px;
 }
 
-.tabla {
+.tabla{
   width: 100%;
-  height: auto;
-  overflow: auto;
+  height:auto;
+  overflow:auto;
   margin: auto;
 }
 
-.tabla-cabecera {
+.tabla-cabecera{
   color: white;
   background-color: rgb(16, 81, 158);
 }
 
-.table-scroll {
+.box{
+  display: none;
+}
+
+.boxE{
+  display: none;
+}
+
+.box.green{
+  display: table-cell;
+  width:10%;
+}
+
+
+.box.green button {
+  width:50% !important;
+}  
+ 
+
+.boxE.eyes {
+    display:  table-cell;
+  width:10%;
+}
+
+.boxE.eyes button {
+  width:50% !important;
+}  
+
+.table-scroll{
   width: 100%;
-  margin-top: 1.5%;
+  margin-top:1.5%;
   margin-bottom: 1.5%;
 }
-.btn btn-danger {
+.btn btn-danger{
   text-align: center;
 }
-.detalles:hover {
-  background-color: #bee5eb;
+.detalles:hover{
+   background-color: #bee5eb;
   cursor: pointer;
 }
 
-.center-block {
+.center-block{
   display: flex;
   justify-content: center;
 }
 
-.btn-enviar {
-  background-color: red;
-  color: white;
-  border: none;
+.btn-enviar{
+  background-color:red;
+  color:white;
+  border:none;
   border-radius: 8px;
   padding: 4px 10px;
   text-align: center;
 }
 
+.two-obs {
+  width:10%;
+}
+
+.two-obs button {
+  width:35% !important;
+}
+
 .two-fields {
-  width: 10%;
+  width:10%;
 }
 
 .two-fields button {
-  width: 50% !important;
+  width:50% !important;
 }
-.mybtn-red {
+
+.mybtn-red{
   color: red;
 }
-.mybtn-blue {
+.mybtn-blue{
   color: blue;
 }
 
-.contenedor-flex {
+.contenedor-flex{
   display: flex;
   width: 20%;
   margin-top: -3%;
 }
 
-.flex-sb {
+.flex-sb{
   justify-content: space-between;
 }
 /*
